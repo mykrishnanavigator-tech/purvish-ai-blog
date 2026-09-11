@@ -1,53 +1,59 @@
 ---
 # Banner
 banner:
-  title: "The Ultimate Starter Template You Need To Start Your Astro Project"
-  content: "Astroplate is a free starter template built with Astro and TailwindCSS, providing everything you need to jumpstart your Astro project and save valuable time."
+  title: "Purvish's AI Journey"
+  content: "Building practical AI-from simple automation to enterprise intelligence."
   image: "/images/banner.png"
+  enable: false
   button:
-    enable: true
-    label: "Fork Deploy and Edit Online 🚀"
-    link: "https://app.sitepins.com/new/clone?name=Astroplate&repository=https://github.com/zeon-studio/astroplate?aff=astroplate"
+    enable: false
+    label: ""
+    link: ""
 
 # Features
 features:
-  - title: "What's Included in Astroplate"
-    image: "/images/service-1.png"
-    content: "Astroplate is a comprehensive starter template that includes everything you need to get started with your Astro project. What's Included in Astroplate"
+  - title: "My Krishna is live"
+    image: "/images/my-krishna-phones.png"
+    content: "A new way to ask, reflect, and have a conversation inspired by Krishna's timeless wisdom."
     bulletpoints:
-      - "10+ Pre-build pages"
-      - "95+ Google Pagespeed Score"
-      - "Build with Astro and TailwindCSS for easy and customizable styling"
-      - "Fully responsive on all devices"
-      - "SEO-optimized for better search engine rankings"
-      - "**Open-source and free** for personal and commercial use"
-    button:
-      enable: false
-      label: "Get Started Now"
-      link: "#"
-
-  - title: "Discover the Key Features Of Astro"
-    image: "/images/service-2.png"
-    content: "Astro is an all-in-one web framework for building fast, content-focused websites. It offers a range of exciting features for developers and website creators. Some of the key features are:"
-    bulletpoints:
-      - "Zero JS, by default: No JavaScript runtime overhead to slow you down."
-      - "Customizable: Tailwind, MDX, and 100+ other integrations to choose from."
-      - "UI-agnostic: Supports React, Preact, Svelte, Vue, Solid, Lit and more."
+      - "AI-Powered Krishna Guidance"
+      - "Personalized Conversations"
+      - "Bhagavad Gita-Inspired Wisdom"
+      - "Secure & Simple iOS Experience"      
     button:
       enable: true
-      label: "Get Started Now"
-      link: "https://github.com/zeon-studio/astroplate"
+      label: "Explore My Krishna"
+      link: "https://apps.apple.com/us/app/my-krishna/id6782722854"
 
-  - title: "The Top Reasons to Choose Astro for Your Next Project"
-    image: "/images/service-3.png"
-    content: "With Astro, you can build modern and content-focused websites without sacrificing performance or ease of use."
+  - title: "From AI Anxiety to Shipping My First iOS App"
+    image: "/images/service-5.png"
+    content: "Building My Krishna: AI Meets Timeless Wisdom"
+    enable: true
     bulletpoints:
-      - "Instantly load static sites for better user experience and SEO."
-      - "Intuitive syntax and support for popular frameworks make learning and using Astro a breeze."
-      - "Use any front-end library or framework, or build custom components, for any project size."
-      - "Built on cutting-edge technology to keep your projects up-to-date with the latest web standards."
+      - "Turning uncertainty into purpose."
+      - "Defining a focused MVP."
+      - "Choosing a fast, scalable stack."
+      - "Learning what not to build."
+    
+    button:
+      enable: true
+      label: "Discover the Journey"
+      link: "/blog/from-ai-anxiety-to-shipping-my-first-ios-app"
+
+  - title: "Why WiseHoot Exists"
+    enable: false
+    image: "/images/service-3.png"
+    content: "AI is most valuable when it is practical, understandable, and connected to real work."
+    bulletpoints:
+      - "Start with clear problems, not hype."
+      - "Build small systems that can grow responsibly."
+      - "Connect automation, knowledge, and decision support."
+      - "Share lessons that practitioners can reuse."
     button:
       enable: false
       label: ""
       link: ""
+
+
+ 
 ---

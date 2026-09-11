@@ -23,7 +23,7 @@ const {
 const { theme_switcher }: { theme_switcher: boolean } = config.settings;
 ---
 
-<a href="/" class="navbar-brand inline-block">
+<a href="/" class="navbar-brand inline-flex items-center gap-3">
   {
     src || srcDarkmode || logo || logo_darkmode ? (
       <>
@@ -52,6 +52,11 @@ const { theme_switcher }: { theme_switcher: boolean } = config.settings;
             }}
             format="webp"
           />
+        )}
+        {logo_text && (
+          <span class="text-lg font-semibold leading-none text-dark dark:text-darkmode-dark">
+            {logo_text}
+          </span>
         )}
       </>
     ) : logo_text ? (

@@ -4,11 +4,7 @@ email: samwilson@email.com
 image: "/images/avatar.png"
 description: this is meta description
 social:
-  - name: github
-    icon: FaGithub
-    link: https://github.com
-
-  - name: twitter
+  - name: x
     icon: FaTwitter
     link: https://twitter.com
 

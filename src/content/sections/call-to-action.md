@@ -1,10 +1,10 @@
 ---
-enable: true
-title: "Ready to build your next project with Astro?"
-image: "/images/call-to-action.png"
-description: "Experience the future of web development with Astroplate and Astro. Build lightning-fast static sites with ease and flexibility."
+enable: false
+title: "My Krishna is live"
+image: "/images/my-krishna-phones.png"
+description: "A new way to ask, reflect, and have a conversation inspired by Krishna's timeless wisdom."
 button:
   enable: true
-  label: "Fork Deploy and Edit Online 🚀"
-  link: "https://app.sitepins.com/new/clone?name=Astroplate&repository=https://github.com/zeon-studio/astroplate?aff=astroplate"
+  label: "Explore My Krishna"
+  link: "https://apps.apple.com/us/app/my-krishna/id6782722854"
 ---
