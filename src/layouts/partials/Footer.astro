@@ -35,7 +35,7 @@ const { footer }: { footer: { name: string; url: string }[] } = menu;
     <div
       class="container text-center text-text-light dark:text-darkmode-text-light"
     >
-      <p set:html={markdownify(config.params.copyright)} />
+      {config.params.copyright && <p set:html={markdownify(config.params.copyright)} />}
     </div>
   </div>
 </footer>

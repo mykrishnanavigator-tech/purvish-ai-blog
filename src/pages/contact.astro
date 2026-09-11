@@ -26,6 +26,13 @@ if (!buildDrafts && contactIndex.data.draft) {
       <div class="row">
         <div class="mx-auto md:col-10 lg:col-6">
           <form action={contact_form_action} method="POST">
+            <input
+              type="hidden"
+              name="_subject"
+              value="New contact form submission from WiseHoots.ai"
+            />
+            <input type="hidden" name="_template" value="table" />
+            <input type="text" name="_honey" class="hidden" tabindex="-1" />
             <div class="mb-6">
               <label for="name" class="form-label">
                 Full Name <span class="text-red-500">*</span>

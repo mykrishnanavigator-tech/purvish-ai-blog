@@ -1,17 +1,16 @@
 {
   "site": {
-    "title": "Astroplate",
-    "base_url": "https://astroplate.netlify.app",
+    "title": "WiseHoots.ai",
+    "base_url": "https://wisehoots.ai",
     "base_path": "/",
     "trailing_slash": false,
-    "favicon": "/images/favicon.png",
-    "logo": "/images/logo.png",
-    "logo_darkmode": "/images/logo-darkmode.png",
-    "logo_width": "150",
-    "logo_height": "30",
-    "logo_text": "Astroplate"
+    "favicon": "/images/wisehoot-icon1.png",
+    "logo": "/images/wisehoot-icon1.png",
+    "logo_darkmode": "/images/wisehoot-icon1.png",
+    "logo_width": "42",
+    "logo_height": "42",
+    "logo_text": "WiseHoots.ai"
   },
-
   "settings": {
     "search": true,
     "sticky_header": true,
@@ -21,41 +20,34 @@
     "summary_length": 200,
     "blog_folder": "blog"
   },
-
   "announcement": {
-    "enable": true,
-    "content": "<span class='text-center block'>♥️ Loving Astroplate? <a class='underline' href='https://github.com/zeon-studio/astroplate' target='_blank' rel='noopener'>Please ⭐️ on Github</a></span>",
+    "enable": false,
+    "content": "",
     "expire_days": 7
   },
-
   "params": {
-    "contact_form_action": "#",
-    "copyright": "Designed And Developed by [Zeon Studio](https://zeon.studio)"
+    "contact_form_action": "https://formsubmit.co/mykrishna.navigator@gmail.com",
+    "copyright": ""
   },
-
   "navigation_button": {
-    "enable": true,
-    "label": "Github",
-    "link": "https://github.com/zeon-studio/astroplate"
+    "enable": false,
+    "label": "",
+    "link": ""
   },
-
   "google_tag_manager": {
     "enable": false,
     "gtm_id": "GTM-XXXXXX"
   },
-
   "disqus": {
     "enable": true,
     "shortname": "themefisher-template",
     "settings": {}
   },
-
   "metadata": {
-    "meta_author": "zeon.studio",
+    "meta_author": "WiseHoots.ai",
     "meta_image": "/images/og-image.png",
-    "meta_description": "astro and tailwind boilerplate"
+    "meta_description": "Building practical AI-from simple automation to enterprise intelligence."
   },
-
   "llms": {
     "generate_llms_txt": true,
     "generate_llms_full_txt": true,

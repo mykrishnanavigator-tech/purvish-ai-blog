@@ -5,49 +5,42 @@
       "url": "/"
     },
     {
-      "name": "About",
-      "url": "/about"
+      "name": "Enterprise AI",
+      "url": "/enterprise-ai"
     },
     {
-      "name": "Elements",
-      "url": "/elements"
-    },
-    {
-      "name": "Pages",
-      "url": "",
+      "name": "My Krishna",
+      "url": "/my-krishna",
       "hasChildren": true,
       "children": [
         {
-          "name": "Contact",
-          "url": "/contact"
+          "name": "Building the MVP",
+          "url": "/blog/from-ai-anxiety-to-shipping-my-first-ios-app"
         },
         {
-          "name": "Blog",
-          "url": "/blog"
-        },
-        {
-          "name": "Authors",
-          "url": "/authors"
-        },
-        {
-          "name": "Categories",
-          "url": "/categories"
-        },
-        {
-          "name": "Tags",
-          "url": "/tags"
-        },
-        {
-          "name": "404 Page",
-          "url": "/404"
+          "name": "A new iOS App",
+          "url": "/blog/my-krishna-is-live"
         }
       ]
+    },
+    {
+      "name": "My Learning",
+      "url": "/my-learning"
+    },
+    {
+      "name": "About",
+      "url": "/about"
     }
   ],
   "footer": [
+    
     {
-      "name": "Elements",
-      "url": "/elements"
+      "name": "My Learning",
+      "url": "/my-learning"
+    },
+    {
+      "name": "About",
+      "url": "/about"
     },
     {
       "name": "Privacy Policy",

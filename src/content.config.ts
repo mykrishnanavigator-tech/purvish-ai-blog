@@ -21,6 +21,8 @@ const blogCollection = defineCollection({
     description: z.string().optional(),
     date: z.coerce.date().optional(),
     image: z.string().optional(),
+    app_store_banner: z.boolean().optional(),
+    hide_tags: z.boolean().optional(),
     author: z.string().default("Admin"),
     // Use factory functions for mutable array defaults (Zod 4 best practice)
     categories: z.array(z.string()).default(() => ["others"]),
@@ -78,6 +80,7 @@ const homepageCollection = defineCollection({
   loader: glob({ pattern: "**/-*.{md,mdx}", base: "src/content/homepage" }),
   schema: z.object({
     banner: z.object({
+      enable: z.boolean().default(true),
       title: z.string(),
       content: z.string(),
       image: z.string(),
@@ -89,6 +92,7 @@ const homepageCollection = defineCollection({
     }),
     features: z.array(
       z.object({
+        enable: z.boolean().default(true),
         title: z.string(),
         image: z.string(),
         content: z.string(),
