@@ -7,6 +7,40 @@
   @apply py-16 xl:py-20;
 }
 
+.homepage-feature-section {
+  @apply relative;
+}
+
+.homepage-feature-section.has-section-separator {
+  @apply mb-4;
+}
+
+.homepage-feature-section.has-section-separator::after {
+  @apply absolute bottom-[-1px] left-1/2 h-[2px] -translate-x-1/2 content-[""];
+  width: min(760px, calc(100% - 2rem));
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--color-border) 92%, transparent) 18%,
+    color-mix(in srgb, var(--color-primary) 40%, transparent) 50%,
+    color-mix(in srgb, var(--color-border) 92%, transparent) 82%,
+    transparent
+  );
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--color-primary) 8%, transparent);
+}
+
+.dark .homepage-feature-section.has-section-separator::after {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--color-darkmode-border) 92%, transparent) 18%,
+    color-mix(in srgb, var(--color-darkmode-primary) 36%, transparent) 50%,
+    color-mix(in srgb, var(--color-darkmode-border) 92%, transparent) 82%,
+    transparent
+  );
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--color-darkmode-primary) 7%, transparent);
+}
+
 /* container */
 .container {
   @apply mx-auto xl:!max-w-[1320px] px-4;
