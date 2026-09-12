@@ -26,3 +26,9 @@ I approach AI pragmatically: architecture and retrieval design matter more than 
 - Deliver AI-enhanced reporting and executive insights using Power BI and structured data models
 - Mentor and lead engineering teams delivering scalable, production-grade solutions
 
+## Contact Me
+
+Email: [purvish.ce@gmail.com](mailto:purvish.ce@gmail.com)
+
+LinkedIn Profile: [https://www.linkedin.com/in/purvishshah/](https://www.linkedin.com/in/purvishshah/)
+

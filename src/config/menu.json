@@ -5,10 +5,6 @@
       "url": "/"
     },
     {
-      "name": "Enterprise AI",
-      "url": "/enterprise-ai"
-    },
-    {
       "name": "My Krishna",
       "url": "/my-krishna",
       "hasChildren": true,

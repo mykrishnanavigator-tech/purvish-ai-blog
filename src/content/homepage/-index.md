@@ -26,7 +26,7 @@ features:
       link: "https://apps.apple.com/us/app/my-krishna/id6782722854"
 
   - title: "From AI Anxiety to Shipping My First iOS App"
-    image: "/images/service-5.png"
+    image: "/images/service-3.png"
     content: "Building My Krishna: AI Meets Timeless Wisdom"
     enable: true
     bulletpoints:
@@ -40,19 +40,18 @@ features:
       label: "Discover the Journey"
       link: "/blog/from-ai-anxiety-to-shipping-my-first-ios-app"
 
-  - title: "Why WiseHoot Exists"
-    enable: false
-    image: "/images/service-3.png"
-    content: "AI is most valuable when it is practical, understandable, and connected to real work."
+  - title: "What My Krishna Is"
+    enable: true
+    image: "/images/service-5.png"
+    content: "A personal journey from timeless wisdom to an AI-powered iOS app."
     bulletpoints:
-      - "Start with clear problems, not hype."
-      - "Build small systems that can grow responsibly."
-      - "Connect automation, knowledge, and decision support."
-      - "Share lessons that practitioners can reuse."
+      - "Built using AI and modern development tools"
+      - "Designed for thoughtful, real-life conversations"
+      - "Now available for download on the App Store"
     button:
-      enable: false
-      label: ""
-      link: ""
+      enable: true
+      label: "Read the Story"
+      link: "https://www.wisehoots.ai/blog/my-krishna-is-live"
 
 
  
