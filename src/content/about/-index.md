@@ -32,3 +32,5 @@ Email: [purvish.ce@gmail.com](mailto:purvish.ce@gmail.com)
 
 LinkedIn Profile: [https://www.linkedin.com/in/purvishshah/](https://www.linkedin.com/in/purvishshah/)
 
+GitHub Profile: [https://github.com/purvishce](https://github.com/purvishce)
+

@@ -3,6 +3,7 @@ title: "From AI Anxiety to Shipping My First iOS App"
 meta_title: ""
 description: "How My Krishna began as a response to AI anxiety and became an MVP built with Next.js, Supabase, Vercel, and Capacitor."
 date: 2026-06-08T05:00:00Z
+image: "/images/my-krishna-phones.png"
 banner: true
 hide_tags: true
 categories: ["My Krishna"]
@@ -83,4 +84,12 @@ AI has lowered the barrier to creating software, but product decisions still mat
 
 That responsibility still belongs to the builder.
 
-##
+## What Came Next
+
+This MVP eventually became a live iOS app. The first version is simple, but it represents the most important step: turning an idea into something real that people can open, try, and respond to.
+
+<a href="https://apps.apple.com/us/app/my-krishna/id6782722854" target="_blank" rel="noopener noreferrer">
+  <img src="/images/my-krishna-ios-icon.png" alt="My Krishna iOS app icon" width="96" height="96" class="my-6 rounded-2xl" />
+</a>
+
+<a href="https://apps.apple.com/us/app/my-krishna/id6782722854" target="_blank" rel="noopener noreferrer">Download My Krishna on the iOS App Store</a>.
