@@ -4,9 +4,9 @@
     "base_url": "https://wisehoots.ai",
     "base_path": "/",
     "trailing_slash": false,
-    "favicon": "/images/wisehoot-icon.png",
-    "logo": "/images/wisehoot-icon.png",
-    "logo_darkmode": "/images/wisehoot-icon.png",
+    "favicon": "/images/wisehoot-icon1.png",
+    "logo": "/images/wisehoot-icon1.png",
+    "logo_darkmode": "/images/wisehoot-icon1.png",
     "logo_width": "42",
     "logo_height": "42",
     "logo_text": "WiseHoots.ai"
@@ -27,7 +27,7 @@
   },
   "params": {
     "contact_form_action": "https://formsubmit.co/mykrishna.navigator@gmail.com",
-    "copyright": "WiseHoots.ai"
+    "copyright": ""
   },
   "navigation_button": {
     "enable": false,
