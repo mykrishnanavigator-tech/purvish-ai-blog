@@ -59,7 +59,7 @@ try {
   // merger json files for search
   const postsPath = new URL(`../${JSON_FOLDER}/posts.json`, import.meta.url);
   const posts = JSON.parse(fs.readFileSync(postsPath, "utf8"));
-  const search = [...posts];
+  const search = posts.filter((post) => !post.frontmatter?.exclude_from_search);
   fs.writeFileSync(`${JSON_FOLDER}/search.json`, JSON.stringify(search));
 } catch (err) {
   console.error(err);
