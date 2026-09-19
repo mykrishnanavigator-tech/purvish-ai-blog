@@ -23,6 +23,8 @@ const blogCollection = defineCollection({
     image: z.string().optional(),
     app_store_banner: z.boolean().optional(),
     hide_tags: z.boolean().optional(),
+    noindex: z.boolean().optional(),
+    exclude_from_search: z.boolean().optional(),
     author: z.string().default("Admin"),
     // Use factory functions for mutable array defaults (Zod 4 best practice)
     categories: z.array(z.string()).default(() => ["others"]),

@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1200" viewBox="0 0 1920 1200" role="img" aria-labelledby="title desc">
+<title id="title">CPBD Biweekly Email Ingestion Pipeline</title><desc id="desc">A spacious Azure architecture for the CPBD biweekly email ingestion pipeline, with API Management access, Azure Functions processing, Microsoft Foundry, Azure AI Content Safety, and Azure AI Search.</desc>
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f8fbff"/><stop offset="1" stop-color="#edf5ff"/></linearGradient>
+ <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10Z" fill="#2877ce"/></marker><marker id="g" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10Z" fill="#0d907a"/></marker>
+ <filter id="s" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="4" stdDeviation="7" flood-color="#17365d" flood-opacity=".12"/></filter>
+ <style>text{font-family:'Segoe UI',Arial,sans-serif;fill:#183653}.t{font-size:34px;font-weight:700}.sub{font-size:17px;fill:#58728d}.zh{font-size:18px;font-weight:700;letter-spacing:.6px}.h{font-size:18px;font-weight:700}.b{font-size:14px}.sm{font-size:12.5px;fill:#536e87}.xs{font-size:11.5px;fill:#536e87}.card{fill:#fff;stroke:#c4d8ee;stroke-width:2;filter:url(#s)}.blue{fill:none;stroke:#2877ce;stroke-width:3;marker-end:url(#a)}.green{fill:none;stroke:#0d907a;stroke-width:3;marker-end:url(#g)}.dash{stroke-dasharray:8 7}.iw{fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.ib{fill:none;stroke:#2877ce;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.num{font-size:14px;font-weight:700;fill:#fff}.white{fill:#fff!important}.pale{fill:#dceeff!important}</style>
+</defs>
+<rect width="1920" height="1200" fill="url(#bg)"/><text class="t" x="65" y="62">CPBD Biweekly Email — Ingestion Pipeline</text><text class="sub" x="65" y="94">A simplified enterprise architecture with the complete ingestion workflow contained in Azure Functions</text>
+
+<!-- compact source and trigger rail -->
+<rect x="45" y="130" width="400" height="1000" rx="24" fill="#f2f7ff" stroke="#b7d3f2" stroke-width="2"/><text class="zh" x="75" y="172">SOURCES &amp; TRIGGER</text>
+<rect class="card" x="80" y="235" width="330" height="150" rx="18"/><circle cx="125" cy="280" r="27" fill="#1673c9"/><rect x="110" y="269" width="30" height="22" rx="3" class="iw"/><path d="M111 271 L125 282 L139 271" class="iw"/><text class="h" x="170" y="278">Biweekly Shared Mailboxes</text><text class="b" x="110" y="326">New CPBD update email</text><text class="sm" x="110" y="352">Body • subject • sender • sent date</text>
+<path class="blue" d="M245 385 V455"/>
+<rect class="card" x="80" y="455" width="330" height="180" rx="18"/><circle cx="125" cy="505" r="30" fill="#6554c0"/><path d="M133 479 L106 513 H125 L118 532 L145 498 H127Z" fill="#fff"/><text class="h" x="170" y="500">Power Automate</text><text class="b" x="110" y="552">Trigger: when a new email arrives</text><text class="sm" x="110" y="580">Calls HTTP-triggered Azure Function</text><rect x="110" y="599" width="245" height="25" rx="12" fill="#eeeaff"/><text class="xs" x="232" y="616" text-anchor="middle">Only orchestration outside Azure Function</text>
+<rect class="card" x="80" y="835" width="330" height="165" rx="18"/><circle cx="125" cy="880" r="27" fill="#0d907a"/><rect x="109" y="864" width="32" height="34" rx="3" class="iw"/><path d="M114 873 H136 M114 881 H136 M114 889 H130" class="iw"/><text class="h" x="170" y="875">SharePoint Config List</text><text class="b" x="110" y="925">Fund definitions and aliases</text><text class="sm" x="110" y="953">Controlled business taxonomy</text>
+
+<!-- Enterprise Layer -->
+<rect x="480" y="130" width="1395" height="1000" rx="24" fill="#edf6ff" stroke="#79afe5" stroke-width="3"/>
+<rect x="480" y="130" width="1395" height="62" rx="24" fill="#1673c9"/><rect x="480" y="165" width="1395" height="27" fill="#1673c9"/><path d="M515 150 C524 133 546 139 548 154 C565 149 574 162 566 174 H519 C506 171 504 156 515 150Z" fill="#fff"/><text class="zh white" x="595" y="169">AZURE ENTERPRISE LAYER</text>
+
+<!-- Band 1 Access -->
+<text class="zh" x="525" y="236" fill="#2166b1">ACCESS</text>
+<rect class="card" x="525" y="260" width="1305" height="120" rx="18"/><circle cx="585" cy="320" r="31" fill="#1673c9"/><path d="M572 308 H598 M572 320 H598 M572 332 H598 M580 300 L572 308 L580 316 M590 324 L598 332 L590 340" class="iw"/><text class="h" x="640" y="303">Azure API Management</text><text class="b" x="640" y="333">Publishes selected Azure Function REST operations as MCP tools</text><text class="sm" x="640" y="357">Policies • authentication • throttling • monitoring</text><rect x="1515" y="285" width="275" height="70" rx="14" fill="#eaf4ff" stroke="#b8d3ef"/><text class="h" x="1652" y="316" text-anchor="middle">MCP Client / Agent</text><text class="sm" x="1652" y="340" text-anchor="middle">Search biweekly knowledge</text>
+
+<!-- Band 2 Function -->
+<text class="zh" x="525" y="430" fill="#2166b1">INGESTION PIPELINE</text>
+<rect x="525" y="455" width="1305" height="340" rx="20" fill="#fff" stroke="#1673c9" stroke-width="4"/>
+<rect x="525" y="455" width="1305" height="66" rx="18" fill="#1673c9"/><rect x="525" y="492" width="1305" height="29" fill="#1673c9"/><circle cx="570" cy="488" r="24" fill="#fff" opacity=".2"/><text x="570" y="499" text-anchor="middle" font-size="30" font-weight="700" fill="#fff">ƒ</text><text class="h white" x="610" y="485">Azure Function App</text><text class="sm pale" x="610" y="508">Complete ingestion pipeline and retrieval API</text>
+
+<!-- eight open stages, no boxes -->
+<path d="M630 615 H1700" stroke="#c4daf1" stroke-width="5" stroke-linecap="round"/>
+<g><circle cx="650" cy="615" r="29" fill="#2877ce"/><text class="num" x="650" y="620" text-anchor="middle">1</text><text class="b" x="650" y="665" text-anchor="middle">Extract latest</text><text class="xs" x="650" y="686" text-anchor="middle">email + metadata</text></g>
+<g><circle cx="800" cy="615" r="29" fill="#2877ce"/><text class="num" x="800" y="620" text-anchor="middle">2</text><text class="b" x="800" y="665" text-anchor="middle">Citation PDF</text><text class="xs" x="800" y="686" text-anchor="middle">Convert to PDF and</text><text class="xs" x="800" y="704" text-anchor="middle">upload to SharePoint</text></g>
+<g><circle cx="950" cy="615" r="29" fill="#2877ce"/><text class="num" x="950" y="620" text-anchor="middle">3</text><text class="b" x="950" y="665" text-anchor="middle">Clean</text><text class="xs" x="950" y="686" text-anchor="middle">signature + disclaimer</text></g>
+<g><circle cx="1100" cy="615" r="29" fill="#2877ce"/><text class="num" x="1100" y="620" text-anchor="middle">4</text><text class="b" x="1100" y="665" text-anchor="middle">Chunk</text><text class="xs" x="1100" y="686" text-anchor="middle">1,200 + 150 overlap</text></g>
+<g><circle cx="1250" cy="615" r="29" fill="#6554c0"/><text class="num" x="1250" y="620" text-anchor="middle">5</text><text class="b" x="1250" y="665" text-anchor="middle">AI enrichment</text><text class="xs" x="1250" y="686" text-anchor="middle">entities + funds</text></g>
+<g><circle cx="1400" cy="615" r="29" fill="#0d907a"/><text class="num" x="1400" y="620" text-anchor="middle">6</text><text class="b" x="1400" y="665" text-anchor="middle">Metadata</text><text class="xs" x="1400" y="686" text-anchor="middle">20+ fields</text></g>
+<g><circle cx="1550" cy="615" r="29" fill="#0d907a"/><text class="num" x="1550" y="620" text-anchor="middle">7</text><text class="b" x="1550" y="665" text-anchor="middle">Embedding</text><text class="xs" x="1550" y="686" text-anchor="middle">text-embedding-3-large</text></g>
+<g><circle cx="1700" cy="615" r="29" fill="#0d907a"/><text class="num" x="1700" y="620" text-anchor="middle">8</text><text class="b" x="1700" y="665" text-anchor="middle">Index</text><text class="xs" x="1700" y="686" text-anchor="middle">Azure AI Search</text></g>
+<rect x="625" y="725" width="1105" height="40" rx="12" fill="#eef6ff"/><text class="sm" x="1177" y="750" text-anchor="middle">Processing context: sender • subject • sent date • message ID • team • fund taxonomy • source_url</text>
+
+<!-- Band 3 Services -->
+<text class="zh" x="525" y="845" fill="#2166b1">PLATFORM SERVICES</text>
+<rect class="card" x="525" y="870" width="390" height="180" rx="18"/><circle cx="580" cy="925" r="29" fill="#6554c0"/><path d="M568 937 L580 911 L592 937 M573 929 H587" class="iw"/><text class="h" x="625" y="916">Microsoft Foundry</text><text class="b" x="625" y="946">Entity and fund extraction</text><text class="sm" x="555" y="988">Org • people • products • topics • fund detection</text><rect x="555" y="1008" width="330" height="25" rx="12" fill="#eeeaff"/><text class="xs" x="720" y="1025" text-anchor="middle">Structured output schema</text>
+<rect class="card" x="982" y="870" width="390" height="180" rx="18"/><circle cx="1037" cy="925" r="29" fill="#ed7d31"/><path d="M1037 904 L1053 911 V924 C1053 936 1046 946 1037 951 C1028 946 1021 936 1021 924 V911Z M1030 925 L1035 930 L1045 919" class="iw"/><text class="h" x="1082" y="916">Azure AI Content Safety</text><text class="b" x="1082" y="946">Protects Foundry model calls</text><text class="sm" x="1012" y="988">Unsafe-content screening • prompt-attack protection</text><rect x="1012" y="1008" width="330" height="25" rx="12" fill="#fff0e6"/><text class="xs" x="1177" y="1025" text-anchor="middle">Not applied to embedding models</text>
+<rect class="card" x="1440" y="870" width="390" height="180" rx="18"/><circle cx="1495" cy="925" r="29" fill="#0d907a"/><ellipse cx="1495" cy="915" rx="14" ry="6" class="iw"/><path d="M1481 915 V935 C1481 943 1509 943 1509 935 V915 M1481 925 C1481 933 1509 933 1509 925" class="iw"/><text class="h" x="1540" y="916">Azure AI Search</text><text class="b" x="1540" y="946">Hybrid knowledge index</text><text class="sm" x="1470" y="988">Keyword + vector • metadata filters • citations</text><rect x="1470" y="1008" width="330" height="25" rx="12" fill="#e7f7f3"/><text class="xs" x="1635" y="1025" text-anchor="middle">Grounded retrieval results</text>
+
+<!-- simple cross-boundary connectors -->
+<path class="blue" d="M410 545 H500 V560 H525"/><path class="green dash" d="M410 918 H465 V745 H625"/>
+<path class="green" d="M1177 380 V455"/><text class="xs" x="1190" y="420">MCP / REST</text>
+<path class="blue" d="M720 795 V870"/><path class="blue" d="M1177 795 V870"/><path class="green" d="M1635 795 V870"/>
+<text class="sm" x="525" y="1095">Enterprise controls: managed identities • Key Vault • Application Insights • private networking • retention and compliance</text>
+</svg>
