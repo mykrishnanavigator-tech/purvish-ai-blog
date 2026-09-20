@@ -34,3 +34,4 @@ LinkedIn Profile: [https://www.linkedin.com/in/purvishshah/](https://www.linkedi
 
 GitHub Profile: [https://github.com/purvishce](https://github.com/purvishce)
 
+Resume: [Download my resume](/Purvish_Shah_Resume.pdf)
