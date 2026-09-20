@@ -1,6 +1,9 @@
 ---
+import BlogCard from "@/components/BlogCard.astro";
 import Base from "@/layouts/Base.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
+import { sortByDate } from "@/lib/utils/sortFunctions";
+import taxonomyFilter from "@/lib/utils/taxonomyFilter";
 import PageHeader from "@/partials/PageHeader.astro";
 import { render } from "astro:content";
 
@@ -22,6 +25,14 @@ export async function getStaticPaths() {
 const { page } = Astro.props;
 const { title, meta_title, description, image } = page.data;
 const { Content } = await render(page);
+
+const BLOG_FOLDER = "blog";
+const isMyLearningPage = page.id === "my-learning";
+const learningPosts = isMyLearningPage
+  ? sortByDate(
+      taxonomyFilter(await getSinglePage(BLOG_FOLDER), "categories", "my-learning"),
+    )
+  : [];
 ---
 
 <Base
@@ -38,6 +49,17 @@ const { Content } = await render(page);
           <div class="content">
             <Content />
           </div>
+          {
+            isMyLearningPage && learningPosts.length > 0 && (
+              <div class="row mt-12">
+                {learningPosts.map((post) => (
+                  <div class="mb-14 md:col-6 lg:col-4">
+                    <BlogCard data={post} />
+                  </div>
+                ))}
+              </div>
+            )
+          }
         </div>
       </div>
     </div>

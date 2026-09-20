@@ -3,7 +3,6 @@ title: "From Manual NDA Reporting to an Automated Legal Review Workflow"
 meta_title: "From Manual NDA Reporting to an Automated Legal Review Workflow"
 description: "How I used Microsoft 365, Power Automate, Azure Functions, and Azure AI Foundry to automate NDA intake, analysis, tracking, and weekly reporting."
 date: 2026-09-19T05:00:00Z
-image: "/images/nda-legal-review-swimlane.png"
 categories: ["My Projects"]
 tags: ["Power Automate", "Azure AI Foundry", "Azure Functions", "SharePoint", "Legal Automation"]
 author: "Purvish Shah"
@@ -16,23 +15,23 @@ Legal teams often spend significant time on work that is necessary but repetitiv
 
 In this project, I designed an automated NDA review and reporting workflow that transformed an email-driven process into a structured, searchable, and repeatable solution.
 
-The goal was not simply to add AI. The goal was to solve a practical business problem: give Legal and investment leaders a reliable view of NDA activity without requiring the Legal team to manually assemble the same information every week.
+The goal was not simply to add AI. The goal was to solve a practical business problem: give Legal and business stakeholders a reliable view of NDA activity without requiring the Legal team to manually assemble the same information every week.
 
 ## The Business Problem
 
-Each regional investment team used a dedicated shared mailbox to send NDAs to Legal for review. Legal received the email, reviewed the attached documents, tracked the request, and updated its status.
+Each business unit or regional team used a dedicated shared mailbox to send NDAs to Legal for review. Legal received the email, reviewed the attached documents, tracked the request, and updated its status.
 
-At the end of each week, the Legal team manually prepared a message for each Head of Investment. The message explained:
+At the end of each week, the Legal team manually prepared a status message for the relevant business leader. The message explained:
 
 - How many NDAs were being processed
-- Which investment team submitted each request
+- Which team submitted each request
 - The current review status
 - Whether an NDA required attention or prioritization
 - Whether a request could be deprioritized or dropped
 
 This created several operational challenges:
 
-- The same reporting steps were repeated for every region and investment leader.
+- The same reporting steps were repeated for every region, business unit, or stakeholder group.
 - Information was spread across emails, attachments, folders, and manually maintained trackers.
 - Important requests could be difficult to distinguish from routine work.
 - Leadership visibility depended on someone manually collecting and formatting the information.
@@ -44,9 +43,9 @@ The real technical problem was broader than email automation. The solution neede
 
 I designed a two-phase workflow using Microsoft 365 and Azure services.
 
-The first phase automates NDA intake and creates a consistent legal-review record. The second phase runs every Friday, enriches the NDA information, updates the tracker, and generates a summary that can be shared with the appropriate investment leader.
+The first phase automates NDA intake and creates a consistent legal-review record. The second phase runs every Friday, enriches the NDA information, updates the tracker, and generates a summary that can be shared with the appropriate business stakeholder.
 
-![Regional NDA legal review and metadata enrichment workflow](/images/nda-legal-review-swimlane.png)
+![NDA legal review and metadata enrichment workflow](/images/nda-legal-review-swimlane.png)
 
 ## Phase 1: Automating NDA Intake and Legal Review
 
@@ -77,7 +76,7 @@ For each NDA, the workflow:
 6. Searches the cleaned content for exact terms such as **non-solicit** and **non-compete**.
 7. Uses Azure AI Foundry to extract structured metadata, including asset type, target assets, and clause-related information.
 8. Updates the NDA tracker with the extracted metadata and keyword results.
-9. Produces an email-ready tracker summary for Legal and the relevant investment leader.
+9. Produces an email-ready tracker summary for Legal and the relevant business stakeholder.
 
 ## Why the Cleanup Microservice Matters
 
@@ -99,13 +98,13 @@ It enables the Legal team to:
 
 - Spend less time collecting and formatting status information
 - Maintain a consistent process across regions
-- Give investment leaders a current view of NDA activity
+- Give business stakeholders a current view of NDA activity
 - Identify requests that may require priority attention
 - Support decisions about which requests can be deprioritized or dropped
 - Retrieve the original email and documents directly from the tracker
 - Build structured data for future reporting and analytics
 
-For leadership, the main benefit is visibility. Instead of waiting for manually assembled updates, each Head of Investment receives a consistent summary based on the same underlying tracker data.
+For leadership, the main benefit is visibility. Instead of waiting for manually assembled updates, each stakeholder receives a consistent summary based on the same underlying tracker data.
 
 ## Technical Architecture
 
@@ -118,7 +117,7 @@ For leadership, the main benefit is visibility. Instead of waiting for manually 
 | Content preprocessing | Azure Function | Removes noise and reduces unnecessary AI token usage |
 | Deterministic detection | Exact-keyword search | Finds terms such as non-solicit and non-compete |
 | Metadata extraction | Azure AI Foundry | Extracts asset type, target assets, and related structured fields |
-| Stakeholder communication | Automated email summary | Gives Legal and investment leaders a consistent weekly view |
+| Stakeholder communication | Automated email summary | Gives Legal and business stakeholders a consistent weekly view |
 
 ## Design Decisions
 
@@ -157,7 +156,7 @@ It brings together:
 - Cost-aware content preprocessing
 - Human review and operational governance
 
-The most important outcome was not the use of a particular technology. It was the creation of a reliable process that reduced manual effort, improved visibility, and gave Legal and investment leaders better information for weekly prioritization decisions.
+The most important outcome was not the use of a particular technology. It was the creation of a reliable process that reduced manual effort, improved visibility, and gave Legal and business stakeholders better information for weekly prioritization decisions.
 
 ## Key Takeaway
 
