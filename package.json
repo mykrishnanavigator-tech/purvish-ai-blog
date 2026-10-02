@@ -26,6 +26,7 @@
     "@astrojs/sitemap": "3.7.3",
     "@digi4care/astro-google-tagmanager": "^2.0.0",
     "@justinribeiro/lite-youtube": "^1.9.0",
+    "@michaelvereb/ai-ui": "github:michaelvereb/ai-ui",
     "astro": "7.1.4",
     "astro-auto-import": "^0.5.2",
     "astro-swiper": "^2.8.1",

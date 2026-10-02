@@ -1,0 +1,1072 @@
+---
+interface Props {
+  id?: string;
+  triggerLabel?: string;
+  eyebrow?: string;
+  title?: string;
+  initialMessage?: string;
+  responseMessage?: string;
+  waitingMessage?: string;
+  waitingMessages?: string[];
+  endpoint?: string;
+  samplePrompts?: string[];
+  samplePromptsLabel?: string;
+}
+
+const defaultWaitingMessages = [
+  "This may take a few minutes while I focus the telescope from deep space.",
+  "Passing between space images for your NASA story...",
+  "Comparing faraway views through the telescope...",
+  "Beaming the clearest story back from space...",
+];
+
+const {
+  id = "wise-chat-popup",
+  triggerLabel = "Open Chat Window",
+  eyebrow = "WiseHoots.ai",
+  title = "Space Explorer Chat",
+  initialMessage = "Hi, I am your WiseHoots explorer. What AI idea should we unpack first?",
+  responseMessage = "Great prompt. This demo popup is ready to connect to your chat service next.",
+  waitingMessage = defaultWaitingMessages[0],
+  waitingMessages = defaultWaitingMessages,
+  endpoint = "https://wisehootsspaceexplorer.onrender.com/nasa-newsroom",
+  samplePrompts = [],
+  samplePromptsLabel = "Sample prompts",
+} = Astro.props;
+---
+
+<div
+  class="wise-chat-root"
+  data-wise-chat-root
+  data-response-message={responseMessage}
+  data-waiting-message={waitingMessage}
+  data-waiting-messages={JSON.stringify(waitingMessages)}
+  data-chat-endpoint={endpoint}
+>
+  <button
+    class="wise-chat-open"
+    type="button"
+    aria-label={triggerLabel}
+    aria-haspopup="dialog"
+    aria-controls={id}
+    data-wise-chat-open
+  >
+    <span class="wise-chat-open-sky" aria-hidden="true">
+      <span class="wise-chat-open-star wise-chat-open-star-one"></span>
+      <span class="wise-chat-open-star wise-chat-open-star-two"></span>
+      <span class="wise-chat-open-telescope">🔭</span>
+    </span>
+    <span class="wise-chat-open-text">Explore Space</span>
+  </button>
+
+  <div class="wise-chat-overlay" data-wise-chat-overlay hidden></div>
+
+  <aside
+    class="wise-chat-popup"
+    id={id}
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby={`${id}-title`}
+    data-wise-chat-popup
+    hidden
+  >
+    <header class="wise-chat-header">
+      <div>
+        <p>{eyebrow}</p>
+        <h2 id={`${id}-title`}>{title}</h2>
+      </div>
+      <div class="wise-chat-window-controls">
+        <button
+          class="wise-chat-window-button"
+          type="button"
+          aria-label="Minimize chat window"
+          data-wise-chat-minimize
+        >
+          -
+        </button>
+        <button
+          class="wise-chat-window-button"
+          type="button"
+          aria-label="Maximize chat window"
+          data-wise-chat-maximize
+        >
+          +
+        </button>
+        <button
+          class="wise-chat-window-button"
+          type="button"
+          aria-label="Restore chat window"
+          data-wise-chat-restore
+        >
+          =
+        </button>
+        <button
+          class="wise-chat-window-button wise-chat-close"
+          type="button"
+          aria-label="Close chat window"
+          data-wise-chat-close
+        >
+          &times;
+        </button>
+      </div>
+    </header>
+
+    <div class="wise-chat-messages" data-wise-chat-messages>
+      <div class="wise-chat-message wise-chat-message-bot">
+        {initialMessage}
+      </div>
+    </div>
+
+    {
+      samplePrompts.length > 0 && (
+        <div class="wise-chat-prompts" aria-label={samplePromptsLabel}>
+          <p>{samplePromptsLabel}</p>
+          <div>
+            {samplePrompts.map((prompt) => (
+              <button type="button" data-wise-chat-prompt={prompt}>
+                {prompt}
+              </button>
+            ))}
+          </div>
+        </div>
+      )
+    }
+
+    <form class="wise-chat-form" data-wise-chat-form>
+      <label class="sr-only" for={`${id}-input`}>Chat message</label>
+      <input
+        id={`${id}-input`}
+        class="form-input"
+        name="message"
+        placeholder="Type a message..."
+        autocomplete="off"
+        data-wise-chat-input
+      />
+      <button class="btn btn-primary" type="submit" disabled>Send</button>
+    </form>
+  </aside>
+</div>
+
+<style>
+  .wise-chat-root {
+    display: inline-block;
+  }
+
+  .wise-chat-open {
+    position: fixed;
+    right: 1rem;
+    bottom: calc(var(--wise-chat-footer-offset, 0px) + 1rem);
+    z-index: 69;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 3.2rem;
+    border: 1px solid rgb(125 211 252 / 48%);
+    border-radius: 999px;
+    background:
+      radial-gradient(circle at 18% 22%, rgb(255 255 255 / 34%) 0 1px, transparent 2px),
+      radial-gradient(circle at 78% 30%, rgb(255 255 255 / 28%) 0 1px, transparent 2px),
+      linear-gradient(135deg, #07111f 0%, #12345f 55%, #050816 100%);
+    color: #f8fafc;
+    padding: 0.45rem 1rem 0.45rem 0.55rem;
+    box-shadow:
+      0 18px 38px rgb(2 6 23 / 26%),
+      inset 0 1px 0 rgb(255 255 255 / 18%);
+    font-weight: 700;
+    transition:
+      border-color 180ms ease,
+      box-shadow 180ms ease,
+      transform 180ms ease;
+  }
+
+  .wise-chat-open:hover,
+  .wise-chat-open:focus-visible {
+    border-color: #67e8f9;
+    box-shadow:
+      0 20px 44px rgb(14 165 233 / 25%),
+      inset 0 1px 0 rgb(255 255 255 / 22%);
+    transform: translateY(-1px);
+  }
+
+  .wise-chat-popup:not([hidden]) ~ .wise-chat-open,
+  .wise-chat-root:has(.wise-chat-popup:not([hidden])) .wise-chat-open {
+    display: none;
+  }
+
+  .wise-chat-open-sky {
+    position: relative;
+    display: inline-grid;
+    width: 2.35rem;
+    height: 2.35rem;
+    place-items: center;
+    overflow: hidden;
+    border-radius: 999px;
+    background:
+      radial-gradient(circle at 72% 24%, #fef3c7 0 0.22rem, transparent 0.24rem),
+      linear-gradient(145deg, #172554, #020617);
+  }
+
+  .wise-chat-open-telescope {
+    position: relative;
+    z-index: 1;
+    font-size: 1.3rem;
+    line-height: 1;
+    transform-origin: 60% 70%;
+    animation: wise-chat-open-scan 2.8s ease-in-out infinite;
+  }
+
+  .wise-chat-open-star {
+    position: absolute;
+    width: 0.24rem;
+    height: 0.24rem;
+    border-radius: 999px;
+    background: #e0f2fe;
+    box-shadow: 0 0 10px #67e8f9;
+  }
+
+  .wise-chat-open-star-one {
+    top: 0.55rem;
+    left: 0.65rem;
+  }
+
+  .wise-chat-open-star-two {
+    right: 0.6rem;
+    bottom: 0.72rem;
+  }
+
+  .wise-chat-open-text {
+    white-space: nowrap;
+  }
+
+  @keyframes wise-chat-open-scan {
+    0%,
+    100% {
+      transform: rotate(-10deg);
+    }
+
+    50% {
+      transform: rotate(12deg);
+    }
+  }
+
+  .wise-chat-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    background: rgb(0 0 0 / 48%);
+  }
+
+  .wise-chat-popup {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 80;
+    display: grid;
+    width: min(420px, calc(100vw - 2rem));
+    max-height: min(620px, calc(100vh - 2rem));
+    grid-template-rows: auto 1fr auto;
+    overflow: hidden;
+    border: 1px solid rgb(125 211 252 / 42%);
+    border-radius: 8px;
+    background:
+      radial-gradient(circle at 18% 22%, rgb(255 255 255 / 18%) 0 1px, transparent 2px),
+      radial-gradient(circle at 72% 16%, rgb(255 255 255 / 16%) 0 1px, transparent 2px),
+      radial-gradient(circle at 86% 72%, rgb(255 255 255 / 14%) 0 1px, transparent 2px),
+      linear-gradient(145deg, #07111f 0%, #101d3a 52%, #050816 100%);
+    color: #ecfeff;
+    box-shadow: 0 24px 80px rgb(2 6 23 / 48%);
+  }
+
+  .dark .wise-chat-popup {
+    border-color: rgb(125 211 252 / 42%);
+    background:
+      radial-gradient(circle at 18% 22%, rgb(255 255 255 / 18%) 0 1px, transparent 2px),
+      radial-gradient(circle at 72% 16%, rgb(255 255 255 / 16%) 0 1px, transparent 2px),
+      radial-gradient(circle at 86% 72%, rgb(255 255 255 / 14%) 0 1px, transparent 2px),
+      linear-gradient(145deg, #07111f 0%, #101d3a 52%, #050816 100%);
+  }
+
+  .wise-chat-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    border-bottom: 1px solid rgb(125 211 252 / 28%);
+    background: rgb(8 13 28 / 72%);
+    padding: 1rem;
+  }
+
+  .wise-chat-header p {
+    margin-bottom: 0.25rem;
+    color: #67e8f9;
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
+
+  .wise-chat-header h2 {
+    margin: 0;
+    color: #fff;
+    font-size: 1.25rem;
+  }
+
+  .wise-chat-window-controls {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 0.4rem;
+  }
+
+  .wise-chat-window-button {
+    display: inline-grid;
+    width: 2rem;
+    height: 2rem;
+    place-items: center;
+    border: 1px solid rgb(125 211 252 / 32%);
+    border-radius: 999px;
+    background: rgb(15 23 42 / 74%);
+    color: #e0f2fe;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1;
+    transition:
+      border-color 180ms ease,
+      background 180ms ease,
+      color 180ms ease;
+  }
+
+  .wise-chat-window-button:hover,
+  .wise-chat-window-button:focus-visible {
+    border-color: #67e8f9;
+    background: rgb(14 165 233 / 22%);
+    color: #fff;
+  }
+
+  .wise-chat-messages {
+    display: flex;
+    min-height: 260px;
+    flex-direction: column;
+    gap: 0.75rem;
+    overflow-y: auto;
+    padding: 1rem;
+  }
+
+  .wise-chat-message {
+    max-width: 86%;
+    border: 1px solid rgb(125 211 252 / 22%);
+    border-radius: 999px;
+    padding: 0.75rem 0.875rem;
+    box-shadow: 0 14px 34px rgb(2 6 23 / 22%);
+    white-space: pre-wrap;
+  }
+
+  .wise-chat-message-bot {
+    align-self: flex-end;
+    border-bottom-right-radius: 8px;
+    background: rgb(14 165 233 / 22%);
+    color: #e0f7ff;
+    text-align: right;
+  }
+
+  .wise-chat-message-user {
+    align-self: flex-start;
+    border-bottom-left-radius: 8px;
+    border-color: rgb(253 224 71 / 45%);
+    background: rgb(254 249 195 / 94%);
+    color: #1e293b;
+    text-align: left;
+  }
+
+  .wise-chat-message-images-only {
+    border-radius: 8px;
+    padding: 0.35rem;
+    background: rgb(8 13 28 / 64%);
+  }
+
+  .wise-chat-message:empty {
+    display: none;
+  }
+
+  .wise-chat-message-error {
+    border-color: rgb(248 113 113 / 45%);
+    background: rgb(127 29 29 / 58%);
+    color: #fff;
+  }
+
+  .wise-chat-message-waiting {
+    position: relative;
+    align-self: flex-start;
+    display: block;
+    min-width: min(310px, 100%);
+    margin-top: auto;
+    overflow: hidden;
+    border-radius: 999px;
+    padding: 3.05rem 1rem 0.85rem;
+    background: rgb(8 47 73 / 72%);
+    color: #cffafe;
+    text-align: left;
+  }
+
+  .wise-chat-message-waiting::before {
+    content: "🔭";
+    position: absolute;
+    top: 0.62rem;
+    left: 1.05rem;
+    z-index: 1;
+    display: inline-grid;
+    width: 1.75rem;
+    height: 1.75rem;
+    place-items: center;
+    border-radius: 999px;
+    background: rgb(15 23 42 / 82%);
+    box-shadow: 0 0 20px rgb(103 232 249 / 38%);
+    animation: wise-chat-telescope-pass 2.8s ease-in-out infinite;
+  }
+
+  .wise-chat-message-waiting::after {
+    content: "";
+    position: absolute;
+    top: 0.7rem;
+    right: 1rem;
+    left: 1rem;
+    height: 1.6rem;
+    border-radius: 999px;
+    background:
+      linear-gradient(135deg, #38bdf8, #0f172a) left center / 2rem 1.35rem no-repeat,
+      linear-gradient(135deg, #facc15, #7c2d12) right center / 2rem 1.35rem no-repeat,
+      linear-gradient(90deg, transparent, rgb(125 211 252 / 42%), transparent);
+    opacity: 0.95;
+  }
+
+  .wise-chat-message a {
+    color: var(--color-primary);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+
+  .wise-chat-image-link {
+    display: block;
+    margin-top: 0.65rem;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+
+  .wise-chat-message-images-only .wise-chat-image-link {
+    margin-top: 0;
+  }
+
+  .wise-chat-image-link img {
+    display: block;
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+  }
+
+  .wise-chat-form button:disabled {
+    cursor: not-allowed;
+    opacity: 0.58;
+  }
+
+  @keyframes wise-chat-telescope-pass {
+    0%,
+    100% {
+      transform: translateX(0) rotate(-10deg);
+    }
+
+    50% {
+      transform: translateX(12.5rem) rotate(8deg);
+    }
+  }
+
+  .wise-chat-prompts {
+    border-top: 1px solid rgb(125 211 252 / 28%);
+    background: rgb(8 13 28 / 52%);
+    padding: 0.85rem 1rem 0;
+  }
+
+  .wise-chat-prompts p {
+    margin-bottom: 0.5rem;
+    color: #bae6fd;
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
+
+  .wise-chat-prompts div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .wise-chat-prompts button {
+    border: 1px solid rgb(125 211 252 / 38%);
+    border-radius: 999px;
+    background: rgb(15 23 42 / 72%);
+    padding: 0.45rem 0.7rem;
+    color: #e0f2fe;
+    font-size: 0.875rem;
+    text-align: left;
+    transition:
+      border-color 180ms ease,
+      color 180ms ease;
+  }
+
+  .wise-chat-prompts button:hover,
+  .wise-chat-prompts button:focus-visible {
+    border-color: #67e8f9;
+    color: #fff;
+  }
+
+  .wise-chat-form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.75rem;
+    border-top: 1px solid rgb(125 211 252 / 28%);
+    background: rgb(8 13 28 / 72%);
+    padding: 1rem;
+  }
+
+  .wise-chat-form input {
+    border-color: rgb(125 211 252 / 32%);
+    border-radius: 999px;
+    background: rgb(255 255 255 / 94%);
+  }
+
+  .wise-chat-form button {
+    border-radius: 999px;
+  }
+
+  .wise-chat-popup.is-maximized {
+    inset: 1rem;
+    width: auto;
+    max-height: none;
+  }
+
+  .wise-chat-popup.is-minimized {
+    width: min(360px, calc(100vw - 2rem));
+    grid-template-rows: auto;
+  }
+
+  .wise-chat-popup.is-minimized .wise-chat-messages,
+  .wise-chat-popup.is-minimized .wise-chat-prompts,
+  .wise-chat-popup.is-minimized .wise-chat-form {
+    display: none;
+  }
+
+  @media (max-width: 575px) {
+    .wise-chat-open {
+      right: 0.75rem;
+      bottom: calc(var(--wise-chat-footer-offset, 0px) + 0.75rem);
+      max-width: calc(100vw - 1.5rem);
+    }
+
+    .wise-chat-popup {
+      right: 0;
+      bottom: 0;
+      width: 100vw;
+      max-height: 88vh;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .wise-chat-popup.is-maximized {
+      inset: 0;
+      width: 100vw;
+      max-height: none;
+      border-radius: 0;
+    }
+
+    .wise-chat-form {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const initializeWiseChat = (root: HTMLElement) => {
+    if (root.dataset.initialized === "true") return;
+    root.dataset.initialized = "true";
+
+    const openButton = root.querySelector<HTMLButtonElement>(
+      "[data-wise-chat-open]",
+    );
+    const closeButton = root.querySelector<HTMLButtonElement>(
+      "[data-wise-chat-close]",
+    );
+    const minimizeButton = root.querySelector<HTMLButtonElement>(
+      "[data-wise-chat-minimize]",
+    );
+    const maximizeButton = root.querySelector<HTMLButtonElement>(
+      "[data-wise-chat-maximize]",
+    );
+    const restoreButton = root.querySelector<HTMLButtonElement>(
+      "[data-wise-chat-restore]",
+    );
+    const overlay = root.querySelector<HTMLElement>(
+      "[data-wise-chat-overlay]",
+    );
+    const popup = root.querySelector<HTMLElement>("[data-wise-chat-popup]");
+    const form = root.querySelector<HTMLFormElement>("[data-wise-chat-form]");
+    const input = root.querySelector<HTMLInputElement>(
+      "[data-wise-chat-input]",
+    );
+    const sendButton = form?.querySelector<HTMLButtonElement>(
+      "button[type='submit']",
+    );
+    const messages = root.querySelector<HTMLElement>(
+      "[data-wise-chat-messages]",
+    );
+    const promptButtons = root.querySelectorAll<HTMLButtonElement>(
+      "[data-wise-chat-prompt]",
+    );
+    const responseMessage = root.dataset.responseMessage || "";
+    const waitingMessage =
+      root.dataset.waitingMessage || "Searching NASA stories...";
+    const fallbackWaitingMessages = [waitingMessage];
+    const waitingMessages = (() => {
+      try {
+        const parsed = JSON.parse(root.dataset.waitingMessages || "[]");
+        if (!Array.isArray(parsed)) return fallbackWaitingMessages;
+
+        const messages = parsed
+          .filter((message): message is string => typeof message === "string")
+          .map((message) => message.trim())
+          .filter(Boolean);
+
+        return messages.length > 0 ? messages : fallbackWaitingMessages;
+      } catch {
+        return fallbackWaitingMessages;
+      }
+    })();
+    const chatEndpoint =
+      root.dataset.chatEndpoint ||
+      "https://wisehootsspaceexplorer.onrender.com/nasa-newsroom";
+    let isSending = false;
+    let footerOffsetFrame: number | undefined;
+
+    const updateLauncherFooterOffset = () => {
+      const footer = document.querySelector<HTMLElement>("footer");
+      if (!footer) {
+        root.style.setProperty("--wise-chat-footer-offset", "0px");
+        return;
+      }
+
+      const footerRect = footer.getBoundingClientRect();
+      const rawOffset = Math.max(0, window.innerHeight - footerRect.top);
+      const maxVisibleOffset = Math.max(0, window.innerHeight - 96);
+      const footerOffset = Math.min(rawOffset, maxVisibleOffset);
+
+      root.style.setProperty(
+        "--wise-chat-footer-offset",
+        `${Math.round(footerOffset)}px`,
+      );
+    };
+
+    const scheduleLauncherFooterOffset = () => {
+      if (typeof footerOffsetFrame === "number") return;
+
+      footerOffsetFrame = window.requestAnimationFrame(() => {
+        footerOffsetFrame = undefined;
+        updateLauncherFooterOffset();
+      });
+    };
+
+    const imageUrlPattern =
+      /^https?:\/\/\S+\.(?:png|jpe?g|gif|webp|avif|svg)(?:\?\S*)?$/i;
+    const urlPattern = /https?:\/\/[^\s<>"')]+/gi;
+
+    const updateSendButton = () => {
+      if (!sendButton || !input) return;
+
+      sendButton.disabled = isSending || input.value.trim().length === 0;
+      sendButton.textContent = isSending ? "Sending..." : "Send";
+    };
+
+    const closeChatElements = (chatRoot: HTMLElement) => {
+      chatRoot
+        .querySelector<HTMLElement>("[data-wise-chat-overlay]")
+        ?.setAttribute("hidden", "");
+      const chatPopup = chatRoot.querySelector<HTMLElement>(
+        "[data-wise-chat-popup]",
+      );
+      chatPopup?.setAttribute("hidden", "");
+      chatPopup?.classList.remove("is-maximized", "is-minimized");
+    };
+
+    const closeOtherChats = () => {
+      document
+        .querySelectorAll<HTMLElement>("[data-wise-chat-root]")
+        .forEach((chatRoot) => {
+          if (chatRoot !== root) {
+            closeChatElements(chatRoot);
+          }
+        });
+    };
+
+    const openChat = () => {
+      closeOtherChats();
+      overlay?.removeAttribute("hidden");
+      popup?.removeAttribute("hidden");
+      popup?.classList.remove("is-minimized");
+      input?.focus();
+    };
+
+    const closeChat = (shouldFocusOpenButton = true) => {
+      closeChatElements(root);
+      if (shouldFocusOpenButton) {
+        openButton?.focus();
+      }
+    };
+
+    const minimizeChat = () => {
+      popup?.classList.remove("is-maximized");
+      popup?.classList.add("is-minimized");
+      overlay?.setAttribute("hidden", "");
+    };
+
+    const maximizeChat = () => {
+      popup?.classList.remove("is-minimized");
+      popup?.classList.add("is-maximized");
+      overlay?.removeAttribute("hidden");
+      input?.focus();
+    };
+
+    const restoreChat = () => {
+      popup?.classList.remove("is-maximized", "is-minimized");
+      overlay?.removeAttribute("hidden");
+      input?.focus();
+    };
+
+    const appendMessage = (
+      text: string,
+      type: "bot" | "user",
+      imageUrls: string[] = [],
+      isError = false,
+    ) => {
+      if (!messages) return;
+
+      const message = document.createElement("div");
+      message.className = `wise-chat-message wise-chat-message-${type}`;
+      if (isError) {
+        message.classList.add("wise-chat-message-error");
+      }
+      if (text) {
+        message.textContent = text;
+      }
+
+      imageUrls.forEach((imageUrl) => {
+        const link = document.createElement("a");
+        link.href = imageUrl;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.className = "wise-chat-image-link";
+        link.setAttribute("aria-label", "Open NASA image in a new tab");
+
+        const image = document.createElement("img");
+        image.src = imageUrl;
+        image.alt = "NASA story image";
+        image.loading = "lazy";
+
+        link.append(image);
+        message.append(link);
+      });
+
+      if (imageUrls.length > 0 && text.length === 0) {
+        message.classList.add("wise-chat-message-images-only");
+      }
+
+      messages.append(message);
+      messages.scrollTop = messages.scrollHeight;
+
+      return message;
+    };
+
+    const updateMessage = (
+      message: HTMLElement | undefined,
+      text: string,
+    ) => {
+      if (!message) return;
+
+      message.textContent = text;
+      messages?.scrollTo({ top: messages.scrollHeight });
+    };
+
+    const removeMessage = (message?: HTMLElement) => {
+      message?.remove();
+    };
+
+    const startWaitingRotation = (message?: HTMLElement) => {
+      if (!message || waitingMessages.length < 2) return undefined;
+
+      let currentIndex = 0;
+
+      return window.setInterval(() => {
+        currentIndex = (currentIndex + 1) % waitingMessages.length;
+        updateMessage(message, waitingMessages[currentIndex]);
+      }, 3000);
+    };
+
+    const stopWaitingRotation = (timer?: number) => {
+      if (typeof timer === "number") {
+        window.clearInterval(timer);
+      }
+    };
+
+    closeChat(false);
+
+    const collectStrings = (value: unknown, strings: string[] = []) => {
+      if (typeof value === "string") {
+        strings.push(value);
+        return strings;
+      }
+
+      if (Array.isArray(value)) {
+        value.forEach((item) => collectStrings(item, strings));
+        return strings;
+      }
+
+      if (value && typeof value === "object") {
+        Object.values(value).forEach((item) => collectStrings(item, strings));
+      }
+
+      return strings;
+    };
+
+    const extractResponseText = (data: unknown) => {
+      if (typeof data === "string") return data;
+
+      if (data && typeof data === "object") {
+        const record = data as Record<string, unknown>;
+        const preferredFields = [
+          "answer",
+          "response",
+          "message",
+          "content",
+          "summary",
+          "text",
+          "result",
+        ];
+        const preferredValue = preferredFields
+          .map((field) => record[field])
+          .find((value) => typeof value === "string");
+
+        if (typeof preferredValue === "string") return preferredValue;
+      }
+
+      return collectStrings(data).join("\n\n") || responseMessage;
+    };
+
+    const extractImageUrls = (data: unknown, text: string) => {
+      const values = [...collectStrings(data), text];
+      const urls = values.flatMap((value) => value.match(urlPattern) || []);
+      return [...new Set(urls.map((url) => url.replace(/[.,;:!?]+$/, "")))]
+        .filter((url) => imageUrlPattern.test(url));
+    };
+
+    const removeImageUrlsFromText = (text: string, imageUrls: string[]) => {
+      let cleanedText = text;
+      imageUrls.forEach((imageUrl) => {
+        cleanedText = cleanedText.split(imageUrl).join("");
+      });
+
+      return cleanedText
+        .replace(/\n{3,}/g, "\n\n")
+        .replace(/[ \t]{2,}/g, " ")
+        .trim();
+    };
+
+    type ApiErrorInfo = {
+      message: string;
+      isRateLimited: boolean;
+      retryAfterSeconds?: number;
+    };
+
+    const getApiErrorInfo = async (
+      response: Response,
+    ): Promise<ApiErrorInfo> => {
+      const fallback =
+        "I could not reach the NASA newsroom service right now. Please try again in a moment.";
+
+      try {
+        const contentType = response.headers.get("content-type") || "";
+        const payload = contentType.includes("application/json")
+          ? await response.json()
+          : await response.text();
+        const text = collectStrings(payload).join(" ");
+
+        if (/rate|quota|resource_exhausted|429/i.test(text)) {
+          const retryMatch = text.match(/retry(?:Delay| in)?[^\d]*(\d+)/i);
+          const retryAfterSeconds = retryMatch
+            ? Number.parseInt(retryMatch[1], 10)
+            : undefined;
+
+          return {
+            message:
+              "The NASA newsroom service is at capacity right now. Please try again in a few minutes.",
+            isRateLimited: true,
+            retryAfterSeconds,
+          };
+        }
+
+        return { message: fallback, isRateLimited: false };
+      } catch {
+        return { message: fallback, isRateLimited: false };
+      }
+    };
+
+    const wait = (seconds: number) =>
+      new Promise((resolve) => {
+        window.setTimeout(resolve, seconds * 1000);
+      });
+
+    const callChatApi = async (
+      query: string,
+      onWaiting?: (message: string) => void,
+    ) => {
+      const maxAttempts = 4;
+
+      for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+        const response = await fetch(chatEndpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ message: query }),
+        });
+
+        if (response.ok) {
+          const contentType = response.headers.get("content-type") || "";
+          if (contentType.includes("application/json")) {
+            return response.json();
+          }
+
+          return response.text();
+        }
+
+        const errorInfo = await getApiErrorInfo(response);
+        const retryAfterSeconds = Math.max(
+          errorInfo.retryAfterSeconds || 1,
+          1,
+        );
+        const retryDelaySeconds = Math.min(
+          retryAfterSeconds + attempt - 1,
+          8,
+        );
+
+        if (
+          errorInfo.isRateLimited &&
+          retryAfterSeconds <= 10 &&
+          attempt < maxAttempts
+        ) {
+          onWaiting?.(
+            `NASA newsroom is busy. Trying again in ${retryDelaySeconds} ${
+              retryDelaySeconds === 1 ? "second" : "seconds"
+            }...`,
+          );
+          await wait(retryDelaySeconds);
+          onWaiting?.(waitingMessage);
+          continue;
+        }
+
+        throw new Error(errorInfo.message);
+      }
+
+      throw new Error(
+        "The NASA newsroom service is busy right now. Please try again shortly.",
+      );
+    };
+
+    const sendMessage = async (text: string) => {
+      const value = text.trim();
+      if (!value || isSending) return;
+
+      appendMessage(value, "user");
+      isSending = true;
+      updateSendButton();
+
+      const loadingMessage = appendMessage(waitingMessage, "bot");
+      loadingMessage?.classList.add("wise-chat-message-waiting");
+      let waitingRotationTimer = startWaitingRotation(loadingMessage);
+
+      try {
+        const data = await callChatApi(value, (message) => {
+          stopWaitingRotation(waitingRotationTimer);
+          waitingRotationTimer = undefined;
+          updateMessage(loadingMessage, message);
+          if (message === waitingMessage) {
+            waitingRotationTimer = startWaitingRotation(loadingMessage);
+          }
+        });
+        const answer = extractResponseText(data);
+        const imageUrls = extractImageUrls(data, answer);
+        const displayAnswer = removeImageUrlsFromText(answer, imageUrls);
+
+        removeMessage(loadingMessage);
+        appendMessage(displayAnswer, "bot", imageUrls);
+      } catch (error) {
+        removeMessage(loadingMessage);
+        appendMessage(
+          error instanceof Error
+            ? error.message
+            : "I could not reach the NASA newsroom service right now. Please try again in a moment.",
+          "bot",
+          [],
+          true,
+        );
+        console.error("WiseHoots chat request failed", error);
+      } finally {
+        stopWaitingRotation(waitingRotationTimer);
+        isSending = false;
+        updateSendButton();
+        input?.focus();
+      }
+    };
+
+    updateSendButton();
+    input?.addEventListener("input", updateSendButton);
+    openButton?.addEventListener("click", openChat);
+    closeButton?.addEventListener("click", closeChat);
+    minimizeButton?.addEventListener("click", minimizeChat);
+    maximizeButton?.addEventListener("click", maximizeChat);
+    restoreButton?.addEventListener("click", restoreChat);
+    window.addEventListener("scroll", scheduleLauncherFooterOffset, {
+      passive: true,
+    });
+    window.addEventListener("resize", scheduleLauncherFooterOffset);
+    updateLauncherFooterOffset();
+    overlay?.addEventListener("click", closeChat);
+    promptButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        if (!(button instanceof HTMLButtonElement)) return;
+
+        const prompt = button.dataset.wiseChatPrompt || button.textContent || "";
+        if (input) {
+          input.value = prompt;
+          updateSendButton();
+        }
+        void sendMessage(prompt);
+        input?.focus();
+      });
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !popup?.hasAttribute("hidden")) {
+        closeChat();
+      }
+    });
+
+    form?.addEventListener("submit", (event: SubmitEvent) => {
+      event.preventDefault();
+
+      if (!(input instanceof HTMLInputElement)) return;
+
+      const value = input.value.trim();
+      if (!value) return;
+
+      input.value = "";
+      updateSendButton();
+      void sendMessage(value);
+    });
+  };
+
+  document
+    .querySelectorAll<HTMLElement>("[data-wise-chat-root]")
+    .forEach(initializeWiseChat);
+</script>

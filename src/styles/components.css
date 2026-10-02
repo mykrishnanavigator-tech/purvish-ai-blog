@@ -203,3 +203,45 @@
   @apply prose-tr:border-border dark:prose-tr:border-darkmode-border;
   @apply prose-td:relative prose-td:z-10 prose-td:px-3 prose-td:py-[18px] dark:prose-td:text-darkmode-text;
 }
+
+.content > p:has(> img:only-child) {
+  @apply mx-auto my-10;
+  max-width: min(1200px, calc(100vw - 2rem));
+}
+
+.content > p:has(> img:only-child) img {
+  @apply mx-auto w-full rounded-lg border border-border bg-light shadow-sm dark:border-darkmode-border dark:bg-darkmode-light;
+}
+
+.content video {
+  @apply my-8 w-full rounded-lg border border-border bg-light shadow-sm dark:border-darkmode-border dark:bg-darkmode-light;
+  aspect-ratio: 16 / 9;
+}
+
+.content pre,
+.content pre.astro-code {
+  @apply my-6 overflow-x-auto rounded-lg border border-border px-5 py-4 text-sm leading-relaxed shadow-sm dark:border-darkmode-border;
+  background: color-mix(in srgb, var(--color-dark) 92%, var(--color-body));
+}
+
+.dark .content pre,
+.dark .content pre.astro-code {
+  background: color-mix(
+    in srgb,
+    var(--color-darkmode-light) 70%,
+    var(--color-darkmode-body)
+  );
+}
+
+.content pre code {
+  @apply rounded-none bg-transparent p-0 text-inherit;
+}
+
+.content pre code::before,
+.content pre code::after {
+  content: none;
+}
+
+.content pre code span {
+  background: transparent !important;
+}
