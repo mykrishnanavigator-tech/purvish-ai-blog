@@ -1,3 +1,9 @@
 [build]
 publish = "dist"
 command = "pnpm build"
+
+[[redirects]]
+from = "/api/nasa-newsroom"
+to = "https://wisehootsspaceexplorer.onrender.com/nasa-newsroom"
+status = 200
+force = true

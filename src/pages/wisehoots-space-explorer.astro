@@ -1,0 +1,397 @@
+---
+import Base from "@/layouts/Base.astro";
+import ChatPopup from "@/layouts/components/ChatPopup.astro";
+import PageHeader from "@/partials/PageHeader.astro";
+
+const title = "WiseHoots Space Explorer";
+const description =
+  "A kid-friendly NASA newsroom that turns space questions into clear, verified stories.";
+
+const workflowSteps = [
+  {
+    title: "Input guardrail",
+    text: "Checks that the request is about NASA, space, astronomy, planets, asteroids, spacecraft, or space science.",
+  },
+  {
+    title: "Discovery Scout",
+    text: "Finds two or three promising story ideas from NASA APOD, NASA media, and asteroid data sources.",
+  },
+  {
+    title: "Science Fact-Checker",
+    text: "Verifies dates, measurements, source reliability, asteroid-risk wording, and unsupported claims.",
+  },
+  {
+    title: "Young Explorer Writer",
+    text: "Turns verified facts into a friendly explanation written for a curious 9-year-old reader.",
+  },
+  {
+    title: "Space Quiz Agent",
+    text: "Adds multiple-choice and imaginative questions when a learning quiz is requested.",
+  },
+  {
+    title: "Output guardrail",
+    text: "Reviews the final answer for kid safety, tone, clarity, and age-appropriate wording.",
+  },
+];
+
+const sourceTools = [
+  "NASA Astronomy Picture of the Day",
+  "NASA Image and Video Library",
+  "NASA Near-Earth Object Web Service",
+  "JPL CAD, SBDB, Sentry, and Scout APIs",
+];
+
+const benefits = [
+  "Focused agents are easier to test and maintain.",
+  "Fact-checking has a clear owner before the story is written.",
+  "The final explanation stays simple without losing scientific accuracy.",
+  "New specialist agents can be added without replacing the editor workflow.",
+];
+
+const apiExample = `POST /nasa-newsroom
+Content-Type: application/json
+
+{
+  "message": "NASA Story"
+}`;
+---
+
+<Base
+  title={title}
+  description={description}
+  image="/images/wisehoots-space-explorer-architecture.png"
+>
+  <PageHeader title={title} />
+
+  <section class="section-sm wise-space">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="lg:col-10 xl:col-9">
+          <div class="wise-space-grid wise-space-grid-intro">
+            <article class="wise-space-card">
+              <p class="wise-space-label">The problem</p>
+              <h3>Space data is scattered and technical</h3>
+              <p>
+                A simple request like “Give me a NASA story” requires source
+                discovery, science checking, measurements, safe wording, and a
+                child-friendly explanation before it is ready to display.
+              </p>
+            </article>
+
+            <article class="wise-space-card">
+              <p class="wise-space-label">The goal</p>
+              <h3>One request, one structured response</h3>
+              <p>
+                The FastAPI service accepts a short message, runs the newsroom
+                workflow, and returns a structured JSON reply that the chat UI
+                can display with story text, images, source notes, and optional
+                quiz content.
+              </p>
+            </article>
+          </div>
+
+          <section
+            id="architecture"
+            class="wise-space-section"
+            aria-labelledby="architecture-title"
+          >
+            <div class="wise-space-section-heading">
+              <p class="wise-space-kicker">System map</p>
+              <h2 id="architecture-title">Architecture diagram</h2>
+              <p>
+                The chat UI sends a question to FastAPI, FastAPI calls the
+                editor agent, and the editor coordinates guardrails, research,
+                fact-checking, writing, quiz generation, and shared NASA/JPL
+                tools.
+              </p>
+            </div>
+            <figure class="wise-space-diagram">
+              <img
+                src="/images/wisehoots-space-explorer-architecture.png"
+                alt="WiseHoots AI Space Explorer architecture showing Chat UI, FastAPI, editor agent, specialist agents, guardrails, and NASA and JPL APIs."
+                loading="lazy"
+              />
+              <figcaption>
+                Blue arrows represent request and result flow between the chat
+                UI, API, editor agent, specialist agents, and shared space-data
+                tools.
+              </figcaption>
+            </figure>
+          </section>
+
+          <section
+            class="wise-space-section"
+            aria-labelledby="workflow-title"
+          >
+            <div class="wise-space-section-heading">
+              <p class="wise-space-kicker">Inside the newsroom</p>
+              <h2 id="workflow-title">Specialist agents with clear jobs</h2>
+              <p>
+                The main editor stays in control while each specialist handles
+                one focused responsibility. That keeps the response reliable,
+                readable, and easier to extend.
+              </p>
+            </div>
+
+            <div class="wise-space-grid wise-space-workflow">
+              {
+                workflowSteps.map((step) => (
+                  <article class="wise-space-card">
+                    <h3>{step.title}</h3>
+                    <p>{step.text}</p>
+                  </article>
+                ))
+              }
+            </div>
+          </section>
+
+          <section
+            class="wise-space-section wise-space-flow"
+            aria-labelledby="technical-flow-title"
+          >
+            <div>
+              <p class="wise-space-kicker">Technical flow</p>
+              <h2 id="technical-flow-title">FastAPI entry point</h2>
+              <p>
+                The API uses a request model to confirm that the message exists
+                and is not empty. Then it runs the newsroom agent and handles
+                common failures such as out-of-scope questions, safety failures,
+                timeouts, fact-checking issues, and unexpected server errors.
+              </p>
+            </div>
+
+            <pre class="wise-space-code"><code>{apiExample}</code></pre>
+          </section>
+
+          <section class="wise-space-section" aria-labelledby="sources-title">
+            <div class="wise-space-section-heading">
+              <p class="wise-space-kicker">Source access</p>
+              <h2 id="sources-title">Shared NASA and JPL tools</h2>
+              <p>
+                The Scout and Fact-Checker rely on trusted space-data sources
+                before the Writer turns the result into a story.
+              </p>
+            </div>
+            <ul class="wise-space-list">
+              {sourceTools.map((tool) => <li>{tool}</li>)}
+            </ul>
+          </section>
+
+          <section
+            class="wise-space-section wise-space-summary"
+            aria-labelledby="why-title"
+          >
+            <div>
+              <p class="wise-space-kicker">Why it works</p>
+              <h2 id="why-title">An agent-as-tool pattern for learning</h2>
+              <p>
+                WiseHoots Space Explorer turns real NASA and JPL information
+                into educational stories for children by separating discovery,
+                verification, explanation, and safety checks.
+              </p>
+            </div>
+            <ul class="wise-space-list wise-space-list-compact">
+              {benefits.map((benefit) => <li>{benefit}</li>)}
+            </ul>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ChatPopup
+    triggerLabel="Open WiseHoots Space Explorer chat"
+    eyebrow="WiseHoots.ai"
+    title="Space Explorer Chat"
+    initialMessage="Hi, I am your WiseHoots space explorer. Ask me for a NASA story, space fact, or asteroid update."
+    samplePrompts={[
+      "NASA Story",
+      "Tell me about today's space picture",
+      "Is any asteroid coming close to Earth?",
+    ]}
+  />
+</Base>
+
+<style>
+  .wise-space {
+    padding-top: 0;
+  }
+
+  .wise-space-section,
+  .wise-space-card {
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background: var(--color-body);
+  }
+
+  .wise-space-section-heading h2,
+  .wise-space-flow h2,
+  .wise-space-summary h2 {
+    margin-bottom: 1rem;
+  }
+
+  .wise-space-card p,
+  .wise-space-section-heading p,
+  .wise-space-flow p,
+  .wise-space-summary p,
+  .wise-space-diagram figcaption {
+    color: var(--color-text);
+  }
+
+  .wise-space-card p:last-child,
+  .wise-space-section-heading p:last-child,
+  .wise-space-flow p:last-child,
+  .wise-space-summary p:last-child {
+    margin-bottom: 0;
+  }
+
+  .wise-space-kicker,
+  .wise-space-label {
+    margin-bottom: 0.65rem;
+    color: var(--color-primary);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .wise-space-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .wise-space-grid-intro {
+    margin-bottom: 2rem;
+  }
+
+  .wise-space-card {
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+  }
+
+  .wise-space-card h3 {
+    margin-bottom: 0.75rem;
+    font-size: clamp(1.2rem, 2vw, 1.45rem);
+  }
+
+  .wise-space-section {
+    margin-top: 2rem;
+    padding: clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .wise-space-section-heading {
+    margin-bottom: 1.5rem;
+  }
+
+  .wise-space-diagram {
+    margin: 0;
+  }
+
+  .wise-space-diagram img {
+    display: block;
+    width: 100%;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background: var(--color-light);
+  }
+
+  .wise-space-diagram figcaption {
+    margin-top: 0.85rem;
+    font-size: 0.95rem;
+  }
+
+  .wise-space-workflow {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  }
+
+  .wise-space-flow,
+  .wise-space-summary {
+    display: grid;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .wise-space-code {
+    overflow-x: auto;
+    margin: 0;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--color-light) 78%, var(--color-body));
+    padding: 1rem;
+    color: var(--color-text-dark);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .wise-space-list {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .wise-space-list li {
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--color-light) 62%, var(--color-body));
+    padding: 0.9rem 1rem;
+    color: var(--color-text-dark);
+    font-weight: 600;
+  }
+
+  .wise-space-list-compact li {
+    background: transparent;
+  }
+
+  .dark .wise-space-section,
+  .dark .wise-space-card {
+    border-color: var(--color-darkmode-border);
+    background: color-mix(
+      in srgb,
+      var(--color-darkmode-light) 78%,
+      var(--color-darkmode-body)
+    );
+    color: var(--color-darkmode-text);
+  }
+
+  .dark .wise-space-card h3,
+  .dark .wise-space-section-heading h2,
+  .dark .wise-space-flow h2,
+  .dark .wise-space-summary h2,
+  .dark .wise-space-code,
+  .dark .wise-space-list li {
+    color: var(--color-darkmode-text-dark);
+  }
+
+  .dark .wise-space-card p,
+  .dark .wise-space-section-heading p,
+  .dark .wise-space-flow p,
+  .dark .wise-space-summary p,
+  .dark .wise-space-diagram figcaption {
+    color: var(--color-darkmode-text);
+  }
+
+  .dark .wise-space-kicker,
+  .dark .wise-space-label {
+    color: var(--color-darkmode-primary);
+  }
+
+  .dark .wise-space-diagram img,
+  .dark .wise-space-code,
+  .dark .wise-space-list li {
+    border-color: var(--color-darkmode-border);
+    background: color-mix(
+      in srgb,
+      var(--color-darkmode-body) 82%,
+      var(--color-darkmode-light)
+    );
+  }
+
+  @media (min-width: 768px) {
+    .wise-space-grid-intro,
+    .wise-space-flow,
+    .wise-space-summary {
+      grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.75fr);
+    }
+  }
+</style>

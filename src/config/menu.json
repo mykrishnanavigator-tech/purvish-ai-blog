@@ -19,6 +19,18 @@
         }
       ]
     },
+    
+    {
+      "name": "AI Agents",
+      "url": "/blog/ai-agents",
+      "hasChildren": true,
+      "children": [
+        {
+          "name": "WiseHoots Space Explorer",
+          "url": "/blog/space-explorer-ai-agent"
+        }
+      ]
+    },
     {
       "name": "My Learning",
       "url": "/my-learning"
