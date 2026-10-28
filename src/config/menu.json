@@ -14,12 +14,15 @@
           "url": "/blog/from-ai-anxiety-to-shipping-my-first-ios-app"
         },
         {
-          "name": "A new iOS App",
+          "name": "My Krishna After Launch",
+          "url": "/blog/my-krishna-after-launch"
+        },
+        {
+          "name": "My Krishna Is Live",
           "url": "/blog/my-krishna-is-live"
         }
       ]
     },
-    
     {
       "name": "AI Agents",
       "url": "/blog/ai-agents",
@@ -41,14 +44,13 @@
     }
   ],
   "footer": [
-    
-    {
-      "name": "My Learning",
-      "url": "/my-learning"
-    },
     {
       "name": "About",
       "url": "/about"
+    },
+    {
+      "name": "My Learning",
+      "url": "/my-learning"
     },
     {
       "name": "Privacy Policy",
