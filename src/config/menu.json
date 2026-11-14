@@ -29,6 +29,10 @@
       "hasChildren": true,
       "children": [
         {
+          "name": "Financial Pandit: From Local to Docker to Azure",
+          "url": "/blog/financial-pandit-blog"
+        },
+        {
           "name": "WiseHoots Space Explorer",
           "url": "/blog/space-explorer-ai-agent"
         }

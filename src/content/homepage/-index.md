@@ -25,34 +25,33 @@ features:
       label: "Explore My Krishna"
       link: "https://apps.apple.com/us/app/my-krishna/id6782722854"
 
+  - title: "Financial Pandit: From Local Agents to Azure"
+    image: "/images/Financial Pandit_ From Local to Azure.png"
+    image_position: "right"
+    content: "How I’m evolving a CrewAI financial analysis experiment into an enterprise-ready application—with LibreChat, FastAPI, Azure hosting, and Entra ID authentication."
+    enable: true
+    bulletpoints:
+      - "Built four CrewAI agents for transaction analysis, charts, and financial insights."
+      - "Used OpenAI’s Decision API for categorization and connected LibreChat through FastAPI."
+      - "Evolved from local development to Docker and Azure, with managed databases and Entra ID authentication."
+      - "Next: observability, APIM, Azure AI Foundry, stronger security, and automated ingestion."
+    button:
+      enable: true
+      label: "Read the Story"
+      link: "/blog/financial-pandit-blog"
+
   - title: "I Built My First iOS App. Here's What Happened After Launch."
     image: "/images/beyond-the-launch-my-krishna-app.png"
-    image_position: "right"
     content: "From chasing downloads to listening to users, rethinking My Krishna, and applying those lessons to enterprise AI."
     enable: true
     bulletpoints:
       - "What my first 101 downloads taught me."
       - "Learning from Reddit conversations and user feedback."
       - "Planning guest access, Android support, RAG, and memory."
-      - "Understanding the problem before choosing the solution."
+      - "Understanding the problem before choosing the solution."    
     button:
       enable: true
-      label: "Read the Story"
+      label: "Discover the Journey" 
       link: "/blog/my-krishna-after-launch"
-
-  - title: "From AI Anxiety to Shipping My First iOS App"
-    image: "/images/service-3.png"
-    content: "Building My Krishna: AI Meets Timeless Wisdom"
-    enable: true
-    bulletpoints:
-      - "Turning uncertainty into purpose."
-      - "Defining a focused MVP."
-      - "Choosing a fast, scalable stack."
-      - "Learning what not to build."
-    
-    button:
-      enable: true
-      label: "Discover the Journey"
-      link: "/blog/from-ai-anxiety-to-shipping-my-first-ios-app"
 
 ---
