@@ -4,7 +4,7 @@ meta_title: "Building Financial Pandit Toward Enterprise Readiness: From Local t
 description: "How Financial Pandit evolved from a local CrewAI experiment into a Dockerized, Azure-hosted financial analysis application with authentication and a path toward enterprise readiness."
 image: "/images/Financial Pandit_ From Local to Azure.png"
 date: 2026-11-14T05:00:00Z
-categories: ["Enterprise AI"]
+categories: ["Enterprise AI","AI APP","AI Agents"]
 tags: ["CrewAI", "FastAPI", "Docker", "Azure", "PostgreSQL", "Entra ID", "AI Agents"]
 author: "Purvish Shah"
 draft: false

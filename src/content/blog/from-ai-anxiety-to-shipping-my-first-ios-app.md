@@ -6,7 +6,7 @@ date: 2026-06-08T05:00:00Z
 image: "/images/my-krishna-phones.png"
 banner: true
 hide_tags: true
-categories: ["My Krishna"]
+categories: ["My Krishna", "AI APP"]
 author: "Purvish Shah"
 draft: false
 ---

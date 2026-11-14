@@ -4,7 +4,7 @@ description: "From chasing downloads to listening to users, rethinking My Krishn
 date: 2026-10-26T05:00:00Z
 image: "/images/beyond-the-launch-my-krishna-app.png"
 author: "Purvish Shah"
-categories: ["My Krishna"]
+categories: ["My Krishna", "AI APP"]
 ---
 
 *From chasing downloads to listening to users, rethinking My Krishna, and applying those lessons to enterprise AI.*
