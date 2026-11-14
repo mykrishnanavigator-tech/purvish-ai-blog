@@ -7,7 +7,7 @@ image: "/images/my-krishna-phones.png"
 app_store_banner: true
 banner_bg: "gray"
 hide_tags: true
-categories: ["My Krishna"]
+categories: ["My Krishna", "AI APP"]
 author: "Purvish Shah"
 tags: []
 draft: false
