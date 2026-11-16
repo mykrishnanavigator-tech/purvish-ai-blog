@@ -7,13 +7,12 @@ export async function getStaticPaths() {
   const BLOG_FOLDER = "blog";
   const posts = await getSinglePage(BLOG_FOLDER);
 
-  const paths = posts.map((post) => ({
+  return posts.map((post) => ({
     params: {
       single: post.id,
     },
     props: { post },
   }));
-  return paths;
 }
 
 const { post } = Astro.props;
